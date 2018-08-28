@@ -1,0 +1,85 @@
+#include <iostream>
+#include <cmath>
+#include <time.h>
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+using namespace std;
+
+// starting main function
+int main(){
+//char till slutet för att starta om spelet//
+    char  omstart;
+    // poängen
+    int Vinnst = 0;
+    int Lika = 0;
+    int Förlust = 0;
+    
+    do{
+        //valet som spelaren gör
+        int val;
+        
+        cout << "=============================================" << endl;
+        cout << "=> Låt oss spela Sten, Sax, Påse <===========" << endl;
+        cout << "=============================================" << endl;
+        cout << "=> Tryck 1 för Sten, 2 för Sax, 3 för Påse <=" << endl;
+        cout << "=============================================" << endl;
+        
+        cin >> val;
+        //En slumpgenerator från 1 till 3 för datorn
+        srand(time(0));
+        int ai = rand() % 3+1;
+        
+        cout << "Datorn valde: " << ai << endl;
+        
+        if (val == 1 && ai == 1){
+            cout << "Sten mot Sten det blir lika!" << endl;
+            Lika++;
+        }
+        else if (val == 1 && ai == 2){
+            cout << "Sten mot Sax du vinner!" << endl;
+            Vinnst++;
+        }
+        else if (val == 1 && ai == 3){
+            cout << "Sten mot Påse du förlorar!" << endl;
+            Förlust++;
+        }
+        else if (val == 2 && ai == 1){
+            cout << "Sax mot Sten du förlorar!" << endl;
+            Förlust++;
+        }
+        else if (val == 2 && ai == 2){
+            cout << "Sax mot Sax det blir lika!" << endl;
+            Lika++;
+        }
+        else if (val == 2 && ai == 3){
+            cout << "Sax mot Påse du vinner!" << endl;
+            Vinnst++;
+        }
+        else if (val == 3 && ai == 1){
+            cout << "Påse mot Sten du vinner!" << endl;
+            Vinnst++;
+        }
+        else if (val == 3 && ai == 2){
+            cout << "Påse mot Sax du förlorar!" << endl;
+            Förlust++;
+        }
+        else if (val == 3 && ai == 3){
+            cout << "Påse mot Påse det blir lika!" << endl;
+            Lika++;
+        }
+        else{
+            //ifall man inte väljer något av alternativen
+            cout << "Du valde inte 1, 2 eller 3" << endl;
+        }
+        //visar poängen
+        cout << "Vinnster:  " << setw(10) << Vinnst << endl;
+        cout << "Lika:      " << setw(10) << Lika << endl;
+        cout << "Förluster: " << setw(10) << Förlust << endl;
+        cout << "Vill du spela igen? Y/N" << endl;
+        cin >> omstart;
+        system("CLS");
+    }while(omstart == 'Y' || omstart == 'y');
+    return 0;
+}
+
