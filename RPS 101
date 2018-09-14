@@ -1,0 +1,107 @@
+//
+//  main.cpp
+//  RPS 101
+//
+//  Created by Philip Andersson on 2018-09-11.
+//  Copyright © 2018 KTC. All rights reserved.
+//
+#include <iostream>
+#include <cmath>
+#include <time.h>
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+// starting main function
+int main()
+{
+    //char to the end if the player wants to play again
+    char  Replay;
+    // the score
+    long Wins = 0;
+    long Ties = 0;
+    long Lost = 0;
+    //So you can more easily change the number of options
+    int MaxOpt = 101;
+    srand(time(0));
+    cout << "==========================================================================" << endl;
+    cout << "======================> Welcome to RPS 101 version! <=====================" << endl;
+    do{
+        int Pmove, Total;
+        cout << "==========================================================================" << endl;
+        cout << "====================> Your options are the following: <===================" << endl;
+        cout << "==========================================================================" << endl;
+        cout << "===============> 1 - DYNAMITE, 2 - TORNADO, 3 - QUICKSAND <===============" << endl;
+        cout << "=============> 4 - PIT, 5 - CHAIN, 6 - GUN,7 - LAW, 8 - WHIP <============" << endl;
+        cout << "=========> 9 - SWORD, 10 - ROCK, 11 - DEATH, 12 - WALL, 13 - SUN <========" << endl;
+        cout << "===> 14 - CAMERA, 15 - FIRE, 16 - CHAINSAW, 17 - SCHOOL, 18 - SCISSORS <==" << endl;
+        cout << "======> 19 - POISON, 20 - CAGE, 21 - AXE, 22 - PEACE, 23 - COMPUTER <=====" << endl;
+        cout << "===> 24 - CASTLE, 25 - SNAKE, 26 - BLOOD, 27 - PORCUPINE, 28 - VULTURE <==" << endl;
+        cout << "=====> 29 - MONKEY, 30 - KING, 31 - QUEEN, 32- PRINCE, 33 - PRINCESS <====" << endl;
+        cout << "========> 34 - POLICE, 35 - WOMAN, 36 - BABY, 37 - MAN, 38 - HOME <=======" << endl;
+        cout << "=======> 39 - TRAIN, 40 - CAR, 41 - NOISE, 42 - BICYCLE, 43 - TREE <======" << endl;
+        cout << "========> 44 - TURNIP, 45 - DUCK, 46 - WOLF, 47 - CAT, 48 - BIRD <========" << endl;
+        cout << "==> 49 - FISH, 50 - SPIDER, 51 - COCKROACH, 52 - BRAIN, 53 - COMMUNITY <==" << endl;
+        cout << "====> 54 - CROSS, 55 - MONEY, 56 - VAMPIRE, 57 - SPONGE, 58 - CHURCH <====" << endl;
+        cout << "=====> 59 - BUTTER, 60 - BOOK, 61 - PAPER, 62 - CLOUD, 63 - AIRPLANE <====" << endl;
+        cout << "========> 64 - MOON, 65 - GRASS, 66 - FILM, 67 - TOILET, 68 - AIR <=======" << endl;
+        cout << "=======> 69 - PLANET, 70 - GUITAR, 71 - BOWL, 72 - CUP, 73 - BEER <=======" << endl;
+        cout << "========> 74 - RAIN, 75 - WATER, 76 - TV, 77 - RAINBOW, 78 - UFO <========" << endl;
+        cout << "====> 79 - ALIEN, 80 - PRAYER, 81 - MOUNTAIN, 82 - SATAN, 83 - DRAGON <===" << endl;
+        cout << "====> 84 - DIAMOND, 85 - PLATINUM, 86 - GOLD, 87 - DEVIL, 88 - FENCE <====" << endl;
+        cout << "=> 89 - VIDEO GAME, 90 - MATH, 91 - ROBOT, 92 - HEART, 93 - ELECTRICITY <=" << endl;
+        cout << "====> 94 - LIGHTNING, 95 - MEDUSA, 96 - POWER, 97 - LASER, 98 - NUKE <====" << endl;
+        cout << "================> 99 - SKY, 100 - TANK, 101 - HELICOPTER <================" << endl;
+        cout << "==========================================================================" << endl;
+       //The players move
+        cin >> Pmove;
+        // the computers move
+        int ai = rand() % MaxOpt+1;
+        cout << "You chose:" << Pmove << endl;
+        cout << "The computer chose:" << ai << endl;
+        //calculates if you won or lost
+        Total = Pmove - ai;
+        if (Total < 0) //not nessecary but makes it a lot easier
+        {
+            Total += MaxOpt;
+        }
+        if (Total % 2 > 0) //you win on all odd numbers above 0 or all even numbers belove 0
+            {
+                cout << "Congratulations you won!" << endl;
+                Wins++;
+            }
+        else if (Total == 0)
+        {
+            cout << "It's a tie!" << endl;
+            Ties++;
+        }
+        else if (Pmove == 0) //just for fun 
+        {
+            cout << "Cheese is great" << endl;
+            Ties++;
+        }
+        else if (Pmove > MaxOpt)
+        {
+            cout << "You didn't choose any of the given numbers!" << endl;
+            Lost++;
+        }
+        else{
+            cout << "You lost!" << endl;
+            Lost++;
+        }
+        this_thread::sleep_for (chrono::seconds(1));
+        //shows the score
+        cout << "Wins:" << setw(10) << Wins << endl;
+        cout << "Ties:" << setw(10) << Ties << endl;
+        cout << "Loss:" << setw(10) << Lost << endl;
+        //asks the player to play again
+        this_thread::sleep_for (chrono::seconds(1));
+        cout << "Do you want to play again? Y/N" << endl;
+        cin >> Replay;
+    }while(Replay == 'Y' || Replay == 'y');
+    return 0;
+}
+
